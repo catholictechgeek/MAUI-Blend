@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_Blend.MAUIStyleEditorPhone"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+            xmlns:local="clr-namespace:MAUI_Blend"
+             Title="MAUIStyleEditorPhone">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <toolkit:BoolToObjectConverter x:Key="example" />
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <ContentPage>
+        <VerticalStackLayout>
+            <Label 
+        Text="Options"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center"
+                 FontSize="Header" />
+            <HorizontalStackLayout>
+                <Picker ItemsSource="{Binding UnsetProperties}" ItemDisplayBinding="{Binding PropertyName}" SelectedIndex="{Binding SetForAdd}" />
+                <Button Text="Add" Clicked="Button_Clicked" />
+            </HorizontalStackLayout>
+            <ListView ItemsSource="{Binding SetProperties}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Property">
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding PropertyName}" >
+								<Label.FormattedText>
+									<FormattedString/>
+								</Label.FormattedText>
+                            </Label>
+                            <local:PropertyInput Value="{Binding PropertyValue}" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ContentPage>
+    <ContentPage>
+        <VerticalStackLayout>
+            <Label 
+        Text="Preview"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+            <local:StyleControl />
+        </VerticalStackLayout>
+    </ContentPage>
+</TabbedPage>

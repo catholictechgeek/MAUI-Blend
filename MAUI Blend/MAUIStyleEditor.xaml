@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_Blend.MAUIStyleEditor"
+             Title="MAUIStyleEditor"
+             xmlns:local="clr-namespace:MAUI_Blend">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <HorizontalStackLayout>
+            <local:StyleControl />
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Options" FontSize="Header" />
+                    <Button Text="Add" />
+                </HorizontalStackLayout>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Property">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding PropertyName}" />
+                                <local:PropertyInput Value="{Binding PropertyValue}" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        <Button Text="View Style" />
+    </VerticalStackLayout>
+</ContentPage>
